@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+  jenkins:
+    container_name: tec-jenkins
+    image: jenkins/jenkins:lts
+    ports:
+      - 8005:8080
+      - 50000:50000
+    expose:
+      - 8080
+    volumes:
+      - /docker/filesystem/jenkins/data:/jenkins_config

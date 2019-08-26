@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+  influxdb:
+    container_name: tec-grafana-db
+    image: influxdb:latest
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+    env_file:
+      - 'env.influxdb'
+    volumes:
+      # Data persistency
+      - /docker/filesystem/grafana/influxdb/data:/var/lib/influxdb
+  
+  telegraf:
+    container_name: tec-grafana-telegraf
+    image: telegraf:latest
+    links:
+      - influxdb
+    volumes:
+      - /docker/compose/grafana/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+  grafana:
+    container_name: tec-grafana
+    image: grafana/grafana:latest
+    ports:
+      - "8004:3000"
+    env_file:
+      - 'env.grafana'
+    links:
+      - influxdb
+    volumes:
+      # Data persistency
+      # sudo mkdir -p /srv/docker/grafana/data; chown 472:472 /srv/docker/grafana/data
+      - /docker/filesystem/grafana/lib:/var/lib/grafana

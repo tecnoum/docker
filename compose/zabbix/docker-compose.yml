@@ -1,0 +1,58 @@
+version: '3.1'
+services:
+  db:
+    container_name: tec-zabbix-db
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone='+08:00'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "Broca_77533"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    ports:
+      - 9306:3306
+    volumes:
+      - /docker/filesystem/zabbix/db/data:/var/lib/mysql
+      - /docker/filesystem/zabbix/db/conf:/etc/mysql/conf.d
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+  server:
+    container_name: tec-zabbix
+    image: zabbix/zabbix-server-mysql:centos-4.0.3
+    restart: unless-stopped
+    environment:
+      DB_SERVER_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Broca_77533
+      ZBX_TIMEOUT: 30
+    ports:
+      - 9051:10051
+      - 8444:10051
+    volumes:
+      - /docker/filesystem/zabbix/alertscripts:/usr/lib/zabbix/alertscripts
+      - /docker/filesystem/zabbix/externalscripts:/usr/lib/zabbix/externalscripts
+      - /docker/filesystem/zabbix/modules:/var/lib/zabbix/modules
+      - /docker/filesystem/zabbix/enc:/var/lib/zabbix/enc
+      - /docker/filesystem/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys
+      - /docker/filesystem/zabbix/ssl/certs:/var/lib/zabbix/ssl/certs
+      - /docker/filesystem/zabbix/ssl/keys:/var/lib/zabbix/ssl/keys
+      - /docker/filesystem/zabbix/ssl/ssl_ca:/var/lib/zabbix/ssl/ssl_ca
+      - /docker/filesystem/zabbix/snmptraps:/var/lib/zabbix/snmptraps
+      - /docker/filesystem/zabbix/mibs:/var/lib/zabbix/mibs
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+
+  web:
+    container_name: tec-zabbix-web
+    image: zabbix/zabbix-web-nginx-mysql:centos-4.0.3
+    restart: unless-stopped
+    environment:
+      DB_SERVER_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Broca_77533
+      ZBX_SERVER_HOST: server
+      PHP_TZ: "America/Sao_Paulo"
+      ZBX_SERVER_NAME: mm-zabbix
+    ports:
+      - 8002:80
+      - 4432:443
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+
