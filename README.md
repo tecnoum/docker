@@ -1,2 +1,2 @@
 # docker
-Repositório dos arquivos de Decker
+Repositório dos arquivos de Docker
