@@ -1,1 +1,1 @@
-git clone git@github.com:tecnoum/docker.git
+git pull https://github.com/tecnoum/docker.git
