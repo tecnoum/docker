@@ -1,0 +1,10 @@
+## Checklist dos Serviços testados dentro pelo vangrant
+
+DEPLOY      TEST    PORT
+GLPI        OFF     8006
+Grafana     OFF     8004
+Graylog     OFF     8007
+Jenkins     OFF     8005
+Owncloud    OFF     8003
+SYSPASS     OK      8001
+Zabbix      OK      8002
