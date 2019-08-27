@@ -6,6 +6,8 @@ services:
    container_name: tec-glpi
    ports:
      - "8006:80"
+   expose:
+     - "80"
    links:
      - mysql:db
    env_file:
