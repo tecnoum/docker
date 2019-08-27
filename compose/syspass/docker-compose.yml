@@ -1,8 +1,8 @@
 version: '3.1'
 services:
   app:
-    container_name: tec-syspass
     image: nuxsmin/docker-syspass:3.0.4
+    container_name: tec-syspass
     restart: always
     ports:
       - 8001:80
@@ -17,8 +17,8 @@ services:
       - /docker/filesystem/syspass/syspass-backup:/var/www/html/sysPass/app/backup
 
   db:
-    container_name: tec-syspass-db
     restart: always
+    container_name: tec-syspass-db
     image: mariadb:10.2
     environment:
       - MYSQL_ROOT_PASSWORD=syspass

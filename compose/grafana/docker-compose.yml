@@ -2,8 +2,8 @@ version: "3.1"
 
 services:
   influxdb:
-    container_name: tec-grafana-db
     image: influxdb:latest
+    container_name: tec-grafana-db
     ports:
       - "8083:8083"
       - "8086:8086"
@@ -15,16 +15,16 @@ services:
       - /docker/filesystem/grafana/influxdb/data:/var/lib/influxdb
   
   telegraf:
-    container_name: tec-grafana-telegraf
     image: telegraf:latest
+    container_name: tec-grafana-telegraf
     links:
       - influxdb
     volumes:
       - /docker/compose/grafana/telegraf.conf:/etc/telegraf/telegraf.conf:ro
 
   grafana:
-    container_name: tec-grafana
     image: grafana/grafana:latest
+    container_name: tec-grafana
     ports:
       - "8004:3000"
     env_file:

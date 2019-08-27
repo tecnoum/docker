@@ -2,8 +2,8 @@ version: '3.1'
 
 services:
   db:
-    container_name: tec-zabbix-db
     image: mysql
+    container_name: tec-zabbix-db
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone='+08:00'
     restart: unless-stopped
     environment:
@@ -16,8 +16,8 @@ services:
       - /docker/filesystem/zabbix/db/conf:/etc/mysql/conf.d
       - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
   server:
-    container_name: tec-zabbix
     image: zabbix/zabbix-server-mysql:centos-4.0.3
+    container_name: tec-zabbix
     restart: unless-stopped
     environment:
       DB_SERVER_HOST: db

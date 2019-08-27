@@ -1,0 +1,19 @@
+version: “3”
+ services:
+  web:
+  image: nginx
+  container_name: tec-nginx
+  volumes:
+   - ./files/etc:/etc/nginx
+   - ./files/conf.d:/etc/nginx/conf.d
+   - ./files/www:/opt/www
+  deploy:
+  replicas: 2
+  restart_policy:
+  condition: on-failure
+  ports:
+   - “80:80”
+   - “443:443”
+  expose:
+   - "80"
+   - "443" 
