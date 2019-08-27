@@ -14,7 +14,7 @@ services:
     volumes:
       - /docker/filesystem/zabbix/db/data:/var/lib/mysql
       - /docker/filesystem/zabbix/db/conf:/etc/mysql/conf.d
-      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    #  - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
   server:
     image: zabbix/zabbix-server-mysql:centos-4.0.3
     container_name: tec-zabbix
@@ -38,7 +38,7 @@ services:
       - /docker/filesystem/zabbix/ssl/ssl_ca:/var/lib/zabbix/ssl/ssl_ca
       - /docker/filesystem/zabbix/snmptraps:/var/lib/zabbix/snmptraps
       - /docker/filesystem/zabbix/mibs:/var/lib/zabbix/mibs
-      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+     # - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
 
   web:
     container_name: tec-zabbix-web
@@ -54,6 +54,6 @@ services:
     ports:
       - 8002:80
       - 4432:443
-    volumes:
-      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    #volumes:
+    # - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
 
