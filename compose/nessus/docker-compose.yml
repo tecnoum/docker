@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  nessus:
+    container_name: mm-nessus
+    restart: always
+    build: nessus-scanner
+    ports:
+      - 8007:8834
+    expose:
+      - 8834
+    networks:
+      mmnet07:
+        ipv4_address: 192.168.207.10        
+
+networks:
+  mmnet07:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.207.0/24

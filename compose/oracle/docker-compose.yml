@@ -1,0 +1,12 @@
+version: "3.1"
+
+services:
+  db:
+    image: deepdiver/docker-oracle-xe-11g
+    container_name: tec-oracle-db
+    ports:
+      - "2020:22"
+      - "1521:1521"
+    expose:
+      - 1521
+      - 22
