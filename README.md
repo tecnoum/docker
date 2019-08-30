@@ -3,23 +3,23 @@ Repositório dos arquivos de Docker
 
 Serviços dentro diretório compose
 
-- **GPLI**
+1. **GPLI**
  - *Sistema de gestão de TI*
-- **Grafana**
+2. **Grafana**
  - *Sistema de Dashboards*
-- **Graylog**
+3. **Graylog**
  - *Sistema de gestão de logs*
-- **Jenkins**
+4. **Jenkins**
  - *Sistema de gestão de deploy*
-- **Nessus**
+5. **Nessus**
  - *Sistema de teste de segurança*
-- **NGIX**
+6. **NGIX**
  - *Sistema de publicador web*
-- **Oracle**
+7. **Oracle**
  - *Sistema de banco de dados*
-- **Owncloud**
+8. **Owncloud**
  - *Sistema de gestão de arquivos*
-- **SysPass**
+9. **SysPass**
  - *Sistema de controle de senhas*
-- **Zabbix**
+10. **Zabbix**
  - *Sistema de monitoramento*
